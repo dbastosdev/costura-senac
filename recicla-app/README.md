@@ -40,3 +40,19 @@ php artisan migrate
 Será usado o starter kit Breeze. 
 https://laravel.com/docs/10.x/starter-kits#laravel-breeze-installation 
 
+Rodar apenas um comando por vez. 
+
+No segundo comando selecionar Blade
+
+```shell
+composer require laravel/breeze --dev 
+php artisan breeze:install
+ 
+php artisan migrate
+npm install
+npm run dev
+```
+
+Ao rodar novamente a aplicação, terá acesso às funcionalidades relativas a login/criação de usuários. 
+
+
