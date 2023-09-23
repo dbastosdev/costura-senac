@@ -96,10 +96,15 @@ Obs.: O relacionamento deve ser criado apenas depois do campo já ser preenchido
 
 Será criada na tela de cadastro um drop_down para selecionar os papéis disponíveis. 
 
+### Views/Auth/Register.blade.php: 
+
+Altera o formulário para enviar junto com as demais informações o tipo de cadastro de usuário. 
+
 ### Model/User: 
 
-Alterar o filable para aceitar a edição do role automaticamente ao ser chamado no controller com o método create. 
+Incrementa ao fillable para receber o dado de role_id do relacionamento. 
+Esse dado pode ser usado para retornar todos os dados do relacionamento. 
 
 ### Controllers/Auth/RegisteredUserController: 
 
-Alterar os campos iniciais que serão recebidos para que através do método estático seja criado o usuário. 
+Faz lógica para buscar do banco de dados os dados de registro do role de acordo com parâmetro que vem do $request do formulário e o atribui ao create do model de User. 

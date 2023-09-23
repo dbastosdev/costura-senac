@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            {{ __('Informações do perfil') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Atualize dados de sua conta") }}
         </p>
     </header>
 
@@ -27,6 +27,15 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
+
+            <!-- Exibição do nome do papel associado ao usuário-->
+            <h2 style="padding-top: 10px;" class="text-lg font-medium text-gray-900 block w-full">
+            Perfil:
+            @if ($user->role_id === 2)
+            Coletor profissional
+            @else
+                Dono de reciclável
+            @endif </h2>
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
