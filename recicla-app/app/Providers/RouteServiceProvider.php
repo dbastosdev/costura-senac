@@ -19,6 +19,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
+    // Cria novos redirecionamentos
+    public const CATADOR = '/catador';
+    public const RECICLADOR = '/reciclador';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */

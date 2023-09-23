@@ -100,6 +100,8 @@ Será criada na tela de cadastro um drop_down para selecionar os papéis dispon�
 
 Altera o formulário para enviar junto com as demais informações o tipo de cadastro de usuário. 
 
+Atualiza ainda edit.blade.php e update-password-form.blade.php para editar a página de perfil do usuário.
+
 ### Model/User: 
 
 Incrementa ao fillable para receber o dado de role_id do relacionamento. 
@@ -108,3 +110,19 @@ Esse dado pode ser usado para retornar todos os dados do relacionamento.
 ### Controllers/Auth/RegisteredUserController: 
 
 Faz lógica para buscar do banco de dados os dados de registro do role de acordo com parâmetro que vem do $request do formulário e o atribui ao create do model de User. 
+
+## 5.5 - Altera o redirecionamento no momento do login ou cadastro do usuário em função do perfil: 
+
+a. cria as páginas do blade para cada tipo de perfil;
+
+b. configura o redirecionamento após o login no controller AuthenticatedSessionController.
+
+c. Altera o routes, para receber uma rota para a view criada (nova) - routes/web
+
+- Alteração para incluir a rota das novas páginas de dashboard;
+- Alteração para fazer lógica e servir página de dashboard adequada de acordo com o usuário logado
+
+d. Altera o RouteServiceProvider para prover as rotas de dashboard do catador e reciclador.
+
+
+

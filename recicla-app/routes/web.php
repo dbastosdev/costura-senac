@@ -19,8 +19,23 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // cria lógica para avaliar rota a ser chamada
+    if(Auth::user()->role_id == 2){
+        return view('catador');
+    }else {
+        return view('reciclador');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Nova rota para o redirecionamento do dashboard do catador
+Route::get('/catador', function () {
+    return view('catador');
+})->middleware(['auth', 'verified'])->name('catador');
+
+// Nova rota para o redirecionamento do dashboard do reciclador
+Route::get('/reciclador', function () {
+    return view('reciclador');
+})->middleware(['auth', 'verified'])->name('reciclador');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

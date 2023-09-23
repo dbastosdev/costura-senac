@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+// User Model
+use App\Models\User;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -17,6 +20,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // retorna a view de login
         return view('auth.login');
     }
 
@@ -29,7 +33,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // pega o id do usuário autenticado
+        $user = User::where('email', $request->email)->first();
+        // redireciona para página em função do usuário autenticado
+
+        if($user->role_id == 2){
+            return redirect()->intended(RouteServiceProvider::CATADOR);
+        }else {
+            return redirect()->intended(RouteServiceProvider::RECICLADOR);
+        }
+
+        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
