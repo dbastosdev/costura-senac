@@ -36,6 +36,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Faz a lógica para recuperar o dado do role que vem do formulário
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
