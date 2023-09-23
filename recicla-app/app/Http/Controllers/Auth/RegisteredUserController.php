@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+// Usando o Role
+use App\Models\Role;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -30,18 +33,21 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Faz a lógica para recuperar o dado do role que vem do formulário por meio da request
+        $role = Role::where('role', $request->role)->first();
+
+        // Vai validar os dados do $request
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Faz a lógica para recuperar o dado do role que vem do formulário
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => $role->id,
         ]);
 
         event(new Registered($user));

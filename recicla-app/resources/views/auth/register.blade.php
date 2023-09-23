@@ -42,10 +42,9 @@
         <!-- Role -->
         <div class="mt-4">
             <x-input-label for="role" :value="__('tipo de cadastro')" />
-            <select id="role" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-              <option>Escolha um tipo de cadastro</option>
-              <option value="2">Coletor profissional</option>
-              <option value="3">Proprietário de reciclável</option>
+            <select id="role" name="role" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+              <option value="garbage_professional">Coletor profissional</option>
+              <option value="garbage_owner">Proprietário de reciclável</option>
             </select>
         </div>
 
