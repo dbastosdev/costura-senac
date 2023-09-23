@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+// Relacionamento com o Role
+use App\Models\Role;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +45,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Relacionamento com o Role - nível de código:
+    // Agora é possível retornar um $user->role para recuperar dados do role associado.
+    /**
+    * Get the user associated with the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasOne
+    */
+    public function role(): HasOne
+    {
+                                        // FK    local_key associada
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
 }

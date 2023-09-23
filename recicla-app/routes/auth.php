@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+                ->name('register'); // chama o método create desse controle que só retorna uma view para cadastro.
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store']); // Chama o método store que faz a persistência do usuário.
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
